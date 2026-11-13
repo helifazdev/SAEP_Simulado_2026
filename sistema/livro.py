@@ -4,7 +4,7 @@ import customtkinter as ctk
 def cadastrar_livro():#FUNÇÃO DE CADASTRO DE LIVROS
     cad = ctk.CTk()#Apelido da abertura de janela CTK(app)
     cad.title('Cadastro de livros')#Título da janela
-    cad.geometry('600x600')#Tamanho da janela
+    cad.geometry('600x400')#Tamanho da janela
     ctk.set_appearance_mode('System') #"System", "Dark" ou "Light"
 
     label_titulo = ctk.CTkLabel(cad, text='TITULO (*)')

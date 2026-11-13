@@ -1,5 +1,6 @@
 #importação da biblioteca que cria a janela
 import customtkinter as ctk
+from tkinter import messagebox
 
 def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
     app = ctk.CTk()#Apelido da abertura de janela CTK(app)
@@ -12,8 +13,9 @@ def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
         senha = campo_senha.get()
         if usuario == "admin" and senha == "1234":
             Resultado.configure(text='Login efetuado com sucesso!!')
+            app.destroy()
         else:
-            Resultado.configure(text='Usuario ou senha incorreta')
+            messagebox.showerror("Erro de autenticação","Senha ou usuario estão incorretos!")
 
     #Label e campo do usuario
     label_usuario = ctk.CTkLabel(app, text='USUARIO')

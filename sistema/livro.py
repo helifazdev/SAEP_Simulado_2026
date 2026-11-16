@@ -1,9 +1,8 @@
 #importação da biblioteca que cria a janela
 import customtkinter as ctk
 
-def cadastrar_livro():#FUNÇÃO DE CADASTRO DE LIVROS
-    
-    cad = ctk.CTk()#Apelido da abertura de janela CTK(app)
+def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
+    cad = ctk.CTkToplevel(Janela_filho)#Apelido da abertura de janela CTK(app)
     cad.title('Cadastro de livros')#Título da janela
     cad.geometry('600x400')#Tamanho da janela
     ctk.set_appearance_mode('System') #"System", "Dark" ou "Light"

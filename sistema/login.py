@@ -13,8 +13,8 @@ def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
         usuario = campo_usuario.get()
         senha = campo_senha.get()
         if usuario == "admin" and senha == "1234":
-            exibir_inicial()
             app.destroy()
+            exibir_inicial()
         else:
             messagebox.showerror("Erro de autenticação","Senha ou usuario estão incorretos!")
 

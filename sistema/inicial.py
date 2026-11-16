@@ -15,7 +15,7 @@ def exibir_inicial():
     btn_livro = ctk.CTkButton(ini, text="Cadastrar Livro", command=lambda:(cadastrar_livro(ini)))
     btn_livro.pack(pady=15)
 
-    btn_emprestimo = ctk.CTkButton(ini, text="Empréstimos")
+    btn_emprestimo = ctk.CTkButton(ini, text="Registrar Empréstimos")
     btn_emprestimo.pack(pady=15)
 
     ini.mainloop()

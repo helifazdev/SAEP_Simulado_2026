@@ -2,6 +2,7 @@
 import customtkinter as ctk
 
 def cadastrar_livro():#FUNÇÃO DE CADASTRO DE LIVROS
+    
     cad = ctk.CTk()#Apelido da abertura de janela CTK(app)
     cad.title('Cadastro de livros')#Título da janela
     cad.geometry('600x400')#Tamanho da janela
@@ -42,5 +43,4 @@ def cadastrar_livro():#FUNÇÃO DE CADASTRO DE LIVROS
     botao.pack(pady=5)
 
     cad.mainloop()
-
-cadastrar_livro()    
+ 

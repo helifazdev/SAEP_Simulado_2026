@@ -9,7 +9,7 @@ def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
     app.geometry('300x300')#Tamanho da janela
     ctk.set_appearance_mode('Dark') #"System", "Dark" ou "Light"
 
-    def validacao_login():
+    def validacao_login(event=None):
         usuario = campo_usuario.get()
         senha = campo_senha.get()
         if usuario == "admin" and senha == "1234":
@@ -37,6 +37,8 @@ def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
     #mensagem de resultado
     Resultado = ctk.CTkLabel(app,text='')
     Resultado.pack(pady=10)
+
+    app.bind("<Return>", validacao_login)
 
     app.mainloop()
 

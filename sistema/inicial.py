@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from sistema.livro import cadastrar_livro
+from sistema.leitor import cadastrar_leitor
 
 def exibir_inicial():
     ini = ctk.CTk()
@@ -9,7 +10,7 @@ def exibir_inicial():
     label_titulo = ctk.CTkLabel(ini, text="PAINEL DO BIBLIOTECÁRIO")
     label_titulo.pack(pady=30)
 
-    btn_leitor = ctk.CTkButton(ini, text="Cadastrar Leitor")
+    btn_leitor = ctk.CTkButton(ini, text="Cadastrar Leitor", command=lambda:(cadastrar_leitor(ini)))
     btn_leitor.pack(pady=15)
 
     btn_livro = ctk.CTkButton(ini, text="Cadastrar Livro", command=lambda:(cadastrar_livro(ini)))

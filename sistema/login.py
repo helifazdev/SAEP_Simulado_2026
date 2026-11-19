@@ -2,6 +2,7 @@
 import customtkinter as ctk
 from tkinter import messagebox
 from sistema.inicial import exibir_inicial
+from sistema.conexao import autenticar_usuario
 
 def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
     app = ctk.CTk()#Apelido da abertura de janela CTK(app)
@@ -10,9 +11,11 @@ def exibir_login():#FUNÇÃO DE EXIBIR O LOGIN
     ctk.set_appearance_mode('Dark') #"System", "Dark" ou "Light"
 
     def validacao_login(event=None):
-        usuario = campo_usuario.get()
-        senha = campo_senha.get()
-        if usuario == "admin" and senha == "1234":
+        usuario = campo_usuario.get().strip()
+        senha = campo_senha.get().strip()
+
+        autenticar = autenticar_usuario(usuario, senha)
+        if autenticar:
             app.destroy()
             exibir_inicial()
         else:

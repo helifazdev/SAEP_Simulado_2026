@@ -65,7 +65,17 @@ def criar_banco_dados():
         conexao.close()
         print("Banco de dados concluído!!")
 
-criar_banco_dados()
+def inserir_bibliotecarios():
+        cursor.execute("""
+          INSERT INTO usuario (nome_usuario, cpf, email, senha,id_bibliotecario)
+          VALUES ("bibliotecario01", "12345678912", "bibli01@email.com", "1111", 1),
+          ("bibliotecario02", "12332178912", "bibli02@email.com", "2222", 2)      
+""")
+        conexao.commit()
+        conexao.close()
+        print("Bibliotecarios incluidos no sistema!")
+
+inserir_bibliotecarios()
 
 
 

@@ -1,5 +1,6 @@
 import sqlite3 as sql
 
+
 Bd = "banco.db"
 
 def conectar():

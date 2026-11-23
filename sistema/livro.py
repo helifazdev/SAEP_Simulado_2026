@@ -1,10 +1,12 @@
 #importação da biblioteca que cria a janela
 import customtkinter as ctk
+from sistema.conexao import cadastrar_livro as importa_no_banco
+from tkinter import messagebox
 
 def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
     cad = ctk.CTkToplevel(Janela_filho)#Apelido da abertura de janela CTK(app)
     cad.title('Cadastro de livros')#Título da janela
-    cad.geometry('600x400')#Tamanho da janela
+    cad.geometry('600x500')#Tamanho da janela
     ctk.set_appearance_mode('System') #"System", "Dark" ou "Light"
 
     label_titulo = ctk.CTkLabel(cad, text='TITULO (*)')
@@ -37,9 +39,21 @@ def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
     campo_edicao = ctk.CTkEntry(cad, placeholder_text='Digite a edição do livro',width=200)
     campo_edicao.pack(pady=0)
 
-    #Botão de entrar
-    botao = ctk.CTkButton(cad, text="cadastrar")
+    def salvar():
+        tit = campo_titulo.get().strip()
+        aut = campo_autor.get().strip()
+        edi = campo_editora.get().strip()
+        isbn = campo_isbn.get().strip()
+        ano = campo_ano_public.get().strip()
+        edic = campo_edicao.get().strip()
+
+        sucesso, mensagem = importa_no_banco(tit,aut,edi,isbn,ano,edic)
+        if sucesso:
+            messagebox.showinfo("Sucesso", mensagem)
+        else:
+            messagebox.showerror("ERRO", mensagem)
+    
+    botao = ctk.CTkButton(cad, text="cadastrar",command=salvar)
     botao.pack(pady=5)
 
-    cad.mainloop()
- 
+   

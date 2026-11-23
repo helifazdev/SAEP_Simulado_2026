@@ -1,5 +1,5 @@
 import sqlite3 as sql
-
+import customtkinter as ctk
 
 Bd = "banco.db"
 
@@ -27,15 +27,15 @@ def autenticar_usuario(login, senha):
             return "leitor"
     return None
 
-def cadastrar_livro(titulo, autor, editora, isbn, ano_public, edicao):
+def cadastrar_livro(titulo, autor, editora, isbn, ano_publicacao, edicao):
     conexao = conectar()
     cursor = conexao.cursor()
     try:
         cursor.execute("""
-        INSERT INTO livro(titulo, autor, editora, isbn, ano_public, edicao) 
+        INSERT INTO livro(titulo, autor, editora, isbn, ano_publicacao, edicao) 
         VALUES (?, ?, ?, ?, ?, ?)
         """, 
-        (titulo, autor, editora, isbn, ano_public, edicao)
+        (titulo, autor, editora, isbn, ano_publicacao, edicao)
                        )
         conexao.commit()
         return True, "Livro cadastrado com Sucesso!" 
@@ -43,7 +43,23 @@ def cadastrar_livro(titulo, autor, editora, isbn, ano_public, edicao):
         conexao.rollback()
         return False, f"Livro não cadastrado erro:{erro}"
     finally:
-        conexao.close
+        conexao.close()
+
+def cadastrar_usuario(nome_usuario, cpf, email, senha):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    try:
+        cursor.execute("""
+        INSERT INTO usuario (nome_usuario, cpf, email, senha)
+        VALUES (?, ?, ?, ?, ?)
+    """, (nome_usuario, cpf, email, senha))
+        conexao.commit()
+        return True, "Usuario Cadastrado com Sucesso" 
+    except Exception as erro:
+        conexao.rollback()
+        return False, f"Livro não cadastrado erro:{erro}"
+    finally:
+        conexao.close()
 
 
 

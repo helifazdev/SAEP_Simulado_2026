@@ -47,6 +47,11 @@ def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
         ano = campo_ano_public.get().strip()
         edic = campo_edicao.get().strip()
 
+        if not all([tit,aut,edi,isbn,ano]):
+            messagebox.showwarning("Atenção!","Os campos com (*) são obrigatórios, " \
+            "preencha todos para continuar")
+            return
+
         sucesso, mensagem = importa_no_banco(tit,aut,edi,isbn,ano,edic)
         if sucesso:
             messagebox.showinfo("Sucesso", mensagem)

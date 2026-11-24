@@ -45,27 +45,29 @@ def cadastrar_livro(titulo, autor, editora, isbn, ano_publicacao, edicao):
     finally:
         conexao.close()
 
-def cadastrar_usuario(id_aluno,nome_usuario, cpf, email, senha,instituicao):
+def cadastrar_usuario(nome_usuario, cpf, email, senha, instituicao):
     conexao = conectar()
     cursor = conexao.cursor()
     try:
         cursor.execute("""
-                INSERT INTO aluno (instituicao)
-                VALUES (?)
-            """, (instituicao,))
+            INSERT INTO aluno (instituicao)
+            VALUES (?)
+        """, (instituicao,))
+        
         id_aluno = cursor.lastrowid
+        
         cursor.execute("""
-        INSERT INTO usuario (id_aluno,nome_usuario, cpf, email, senha, id_aluno)
-        VALUES (?, ?, ?, ?, ?)
-    """, (nome_usuario, cpf, email, senha))
+            INSERT INTO usuario (id_aluno, nome_usuario, cpf, email, senha)
+            VALUES (?, ?, ?, ?, ?)
+        """, (id_aluno, nome_usuario, cpf, email, senha))
+        
         conexao.commit()
         return True, "Usuario Cadastrado com Sucesso" 
     except Exception as erro:
         conexao.rollback()
-        return False, f"Usuario não cadastrado erro:{erro}"
+        return False, f"Usuario não cadastrado erro: {erro}"
     finally:
         conexao.close()
-
 
 
 

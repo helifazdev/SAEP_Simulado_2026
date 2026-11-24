@@ -75,7 +75,9 @@ def inserir_bibliotecarios():
         conexao.close()
         print("Bibliotecarios incluidos no sistema!")
 
-inserir_bibliotecarios()
-
-
+def Apagar_dados(tabela):
+        cursor.execute(f"""
+               DELETE FROM {tabela} 
+""")
+        conexao.commit()
 

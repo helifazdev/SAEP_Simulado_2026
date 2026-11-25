@@ -13,7 +13,7 @@
 
 ### 📋 Sobre o Projeto
 
-Este repositório reúne a estrutura inicial e os padrões de arquitetura desenvolvidos em sala de aula pelo **Prof. Helifaz Rocha** em conjunto com os estudantes da área de **Desenvolvimento de Sistemas**.
+Este repositório reúne a estrutura inicial e os padrões de arquitetura desenvolvidos em sala de aula pelo **Prof. Helifaz Viana** em conjunto com os estudantes da área de **Desenvolvimento de Sistemas**.
 
 O objetivo principal é criar um ambiente realista de treinamento para o **SAEP (Sistema de Avaliação da Educação Profissional e Tecnológica)**, permitindo que a turma pratique o ciclo completo de construção de software antes da avaliação oficial — desde o entendimento das regras de negócio e modelagem de dados até a implementação, testes e versionamento de código.
 

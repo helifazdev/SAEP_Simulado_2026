@@ -69,6 +69,19 @@ def cadastrar_usuario(nome_usuario, cpf, email, senha, instituicao):
     finally:
         conexao.close()
 
+def lista_leitor():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute("""
+        SELECT id_aluno, nome_usuario
+        FROM usuario
+        WHERE id_aluno IS NOT NULL
+        ORDER BY nome_usuario
+    """)
+    leitores = cursor.fetchall()
+    conexao.close()
+    return leitores
+
 
 
 

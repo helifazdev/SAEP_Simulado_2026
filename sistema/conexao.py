@@ -82,6 +82,16 @@ def lista_leitor():
     conexao.close()
     return leitores
 
-
+def lista_livros():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute("""
+        SELECT id_livro, titulo
+        FROM livro
+        ORDER BY titulo
+    """)
+    livros = cursor.fetchall()
+    conexao.close()
+    return livros
 
 

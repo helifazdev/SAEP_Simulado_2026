@@ -4,7 +4,7 @@ from sistema.conexao import cadastrar_livro as importa_no_banco
 from tkinter import messagebox
 
 def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
-    
+    Janela_filho.withdraw()
     cad = ctk.CTkToplevel(Janela_filho)#Apelido da abertura de janela CTK(app)
     cad.title('Cadastro de livros')#Título da janela
     cad.geometry('600x500')#Tamanho da janela
@@ -39,6 +39,11 @@ def cadastrar_livro(Janela_filho):#FUNÇÃO DE CADASTRO DE LIVROS
     label_edicao.pack(pady=(0, 0))
     campo_edicao = ctk.CTkEntry(cad, placeholder_text='Digite a edição do livro',width=200)
     campo_edicao.pack(pady=0)
+
+    def ao_fechar():
+        Janela_filho.deiconify()  
+        cad.destroy()
+    cad.protocol("WM_DELETE_WINDOW", ao_fechar)
 
     def salvar():
         tit = campo_titulo.get().strip()

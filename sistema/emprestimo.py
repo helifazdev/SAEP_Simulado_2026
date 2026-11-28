@@ -1,6 +1,7 @@
 import customtkinter as ctk
-from sistema.conexao import lista_leitor, lista_livros
+from sistema.conexao import lista_leitor, lista_livros, cadastrar_emprestimo
 from datetime import date, timedelta
+from tkinter import messagebox
 
 def cadastrar_emprestimo(Janela_filho):
     Janela_filho.withdraw()
@@ -50,9 +51,27 @@ def cadastrar_emprestimo(Janela_filho):
     def ao_fechar():
         Janela_filho.deiconify()  
         emp.destroy()
+
     emp.protocol("WM_DELETE_WINDOW", ao_fechar)
 
-    botao = ctk.CTkButton(emp, text="cadastrar")
+    def salvar():
+        nome_aluno = Lista_leitor.get()
+        livro = Lista_livro.get()
+        Data_de_entrega = campo_entrega.get().strip()
+        Data_de_devolucao = campo_dev.get().strip()
+
+        if not all([nome_aluno,livro,Data_de_entrega,Data_de_devolucao]):
+            messagebox.showwarning("Atenção!","Os campos com (*) são obrigatórios, " \
+            "preencha todos para continuar")
+            return 
+
+        sucesso, mensagem = cadastrar_emprestimo(nome_aluno,livro,Data_de_entrega,Data_de_devolucao)
+        if sucesso:
+            messagebox.showinfo("Sucesso", mensagem)
+        else:
+            messagebox.showerror("ERRO", mensagem)
+
+    botao = ctk.CTkButton(emp, text="cadastrar", command=salvar)
     botao.pack(pady=5)
 
     emp.mainloop()

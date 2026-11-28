@@ -69,6 +69,37 @@ def cadastrar_usuario(nome_usuario, cpf, email, senha, instituicao):
     finally:
         conexao.close()
 
+def cadastrar_emprestimo(id_aluno,id_livro,data_emprestimo,data_devolucao):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    try:
+        cursor.execute("""
+            SELECT id_aluno FROM usuario
+            WHERE id_aluno = ?
+        """, (id_aluno,))
+        if not cursor.fetchone():
+            return False, "Aluno não encontrado no sistema"
+
+        cursor.execute("""
+                SELECT id_livro FROM livro
+                WHERE id_livro = ?
+            """, (id_livro,))
+        if not cursor.fetchone():
+            return False, "Livro não encontrado no sistema"
+        
+        cursor.execute("""
+            INSERT INTO emprestimo (id_aluno, id_livro, data_emprestimo, data_devolucao)
+            VALUES (?, ?, ?, ?)
+        """, (id_aluno, id_livro, data_emprestimo, data_emprestimo))
+        
+        conexao.commit()
+        return True, "empréstimo registrado com sucesso!" 
+    except Exception as erro:
+        conexao.rollback()
+        return False, f"empréstimo não registrado erro: {erro}"
+    finally:
+        conexao.close()
+
 def lista_leitor():
     conexao = conectar()
     cursor = conexao.cursor()
@@ -93,5 +124,3 @@ def lista_livros():
     livros = cursor.fetchall()
     conexao.close()
     return livros
-
-
